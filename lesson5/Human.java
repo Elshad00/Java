@@ -1,3 +1,4 @@
+import java.util.Objects;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.Arrays;
@@ -101,6 +102,29 @@ public class Human {
         }
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if(obj==null || this.getClass()!=obj.getClass()){
+            return false;
+        }
+        Human human = (Human)obj;
+        return Objects.equals(name, human.name) &&
+                Objects.equals(surname, human.surname) &&
+                dateOfBirth==human.dateOfBirth && IQ==human.IQ;
+    }
+    
+    @Override
+    public int hashCode() {
+        int result=17;
+        result=31*result+Objects.hashCode(name);
+        result=31*result+Objects.hashCode(surname);
+        result=31*result+dateOfBirth;
+        result=31*result+IQ;
+        return result;
+    }
 
     @Override
     public String toString(){
