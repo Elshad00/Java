@@ -67,17 +67,17 @@ public class Pet {
     }
 
     @Override
-    public boolean equals(Object that) {
-        if (this == that) {
+    public boolean equals(Object obj) {
+        if (this == obj) {
             return true;
         }
-        if(that==null || this.getClass()!=that.getClass()) {
+        if(obj==null || this.getClass()!=obj.getClass()) {
             return false;
         }
-        Pet thatPet = (Pet)that;
-        return Objects.equals(species, thatPet.species) &&
-                Objects.equals(nickname, thatPet.nickname) &&
-                age==thatPet.age && trickLevel==thatPet.trickLevel;
+        Pet pet = (Pet)obj;
+        return Objects.equals(species, pet.species) &&
+                Objects.equals(nickname, pet.nickname) &&
+                age==pet.age && trickLevel==pet.trickLevel;
     }
     
     @Override
