@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -70,7 +71,27 @@ public class Family {
 
     }
 
-
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if(obj==null || obj.getClass()!=this.getClass()){
+            return false;
+        }
+        Family family = (Family) obj;
+        return Objects.equals(mother, family.mother) &&
+                Objects.equals(father, family.father);
+    }
+    
+    @Override
+    public int hashCode() {
+        int result=17;
+        result=31*result+mother.hashCode();
+        result=31*result+father.hashCode();
+        return result;
+    }
+    
     @Override
     public String toString() {
         String[] names = new String[children.length];
