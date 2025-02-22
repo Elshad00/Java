@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Pet {
     private Species species;
     private String nickname;
@@ -62,6 +64,29 @@ public class Pet {
 
     public void foul(){
         System.out.println("I need to cover it up");
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if(obj==null || this.getClass()!=obj.getClass()) {
+            return false;
+        }
+        Pet pet = (Pet)obj;
+        return Objects.equals(species, pet.species) &&
+                Objects.equals(nickname, pet.nickname) &&
+                age==pet.age && trickLevel==pet.trickLevel;
+    }
+    @Override
+    public int hashCode() {
+        int result=17;
+        result = 31 * result + species.hashCode();
+        result = 31 * result + nickname.hashCode();
+        result = 31 * result + age;
+        result = 31 * result + trickLevel;
+        return result;
     }
 
     @Override
