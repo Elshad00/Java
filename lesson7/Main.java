@@ -11,8 +11,8 @@ public class Main {
         Family family = new Family(mother, father);
         family.setPet(pet);
 
-        Human child1 = new Human("Israfil", "Abdurrahmanov", 1994, family);
-        Human child2 = new Human("Elekber", "Yasamalli", 2005, family);
+        Human child1 = new Human("Israfil", "Abdurrahmanov", 1994);
+        Human child2 = new Human("Elekber", "Yasamalli", 2005);
 
 
         System.out.println(family);
