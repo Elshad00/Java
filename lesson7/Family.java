@@ -65,11 +65,6 @@ public class Family {
 
     public boolean deleteChildrenWithIndex(int index) {
         boolean deleted = false;
-        if (index < 0 || index >= children.length) {
-            System.out.println("Invalid index");
-            return deleted;
-        }
-
         Human[] children1 = new Human[0];
         for (int i = 0; i < children.length; i++) {
             if (i == index) {
@@ -79,6 +74,10 @@ public class Family {
             children1 = Arrays.copyOf(children1, children1.length + 1);
             children1[children1.length - 1] = children[i];
         }
+
+        children = children1;
+        return deleted;
+    }
 
         children = children1;
         return deleted;
