@@ -16,17 +16,17 @@ public class Main {
 
 
         System.out.println(family);
-        System.out.println(family.countFamily());
+        System.out.println("The number of family members: " + family.countFamily());
         System.out.println();
 
         family.addChild(child1);
         System.out.println(family);
-        System.out.println(family.countFamily());
+        System.out.println("The number of family members: " + family.countFamily());
         System.out.println();
 
         family.addChild(child2);
         System.out.println(family);
-        System.out.println(family.countFamily());
+        System.out.println("The number of family members: " + family.countFamily());
         System.out.println();
 
         family.deleteChild(child1);
@@ -36,8 +36,17 @@ public class Main {
             }
         }
         System.out.println(family);
-        System.out.println(family.countFamily());
+        System.out.println("The number of family members: " + family.countFamily());
         System.out.println();
 
+        family.deleteChildrenWithIndex(0);
+        for (int i = 0; i < 10000000; i++) {
+            if (family.deleteChild(child1)) {
+                System.gc();
+            }
+        }
+        System.out.println(family);
+        System.out.println("The number of family members: " + family.countFamily());
+        System.out.println();
     }
 }
