@@ -109,6 +109,6 @@ public class Human {
     @SuppressWarnings("removal")
     @Override
     protected void finalize() throws Throwable {
-        System.out.println(this.name + "Human object is removed.");
+        System.out.println("Human object is removed.");
     }
 }
