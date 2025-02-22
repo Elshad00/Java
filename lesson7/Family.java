@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Objects;
 
 public class Family {
     private Human mother;
@@ -51,7 +52,7 @@ public class Family {
         boolean deleted = false;
         Human[] children1 = new Human[0];
         for(Human child : children) {
-            if(child == delChild) {
+            if(child.equals(delChild)) {
                 deleted = true;
                 continue;
             }
@@ -79,13 +80,29 @@ public class Family {
         return deleted;
     }
 
-        children = children1;
-        return deleted;
-    }
-
     public int countFamily() {
         return 2 + children.length;
 
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if(obj==null || obj.getClass()!=this.getClass()){
+            return false;
+        }
+        Family family = (Family) obj;
+        return Objects.equals(mother, family.mother) &&
+                Objects.equals(father, family.father);
+    }
+    @Override
+    public int hashCode() {
+        int result=17;
+        result=31*result+mother.hashCode();
+        result=31*result+father.hashCode();
+        return result;
     }
 
     @Override
