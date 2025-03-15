@@ -45,7 +45,8 @@ public class Main {
         }
 
         Arrays.sort(students, comparator);
-        System.out.println("\nSorted by Grade (Descending), BirthDate (Ascending), Gender (Females First):");
+        System.out.println();
+        System.out.println("Sort by Grade (Descending), BirthDate (Ascending), Gender (Females First):");
         for (Student student : students) {
             System.out.println(student);
         }
