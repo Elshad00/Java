@@ -2,17 +2,17 @@ import java.util.Comparator;
 
 public class StudentComparator implements Comparator<Student> {
     @Override
-    public int compare(Student s1, Student s2) {
-        int gradeCompare = Double.compare(s2.getGrade(), s1.getGrade());
+    public int compare(Student student1, Student student2) {
+        int gradeCompare = Double.compare(student2.getGrade(), student1.getGrade());
         if (gradeCompare != 0) {
             return gradeCompare;
         }
 
-        int birthDateCompare = Integer.compare(s1.getBirthDate(), s2.getBirthDate());
+        int birthDateCompare = Integer.compare(student1.getBirthDate(), student2.getBirthDate());
         if (birthDateCompare != 0) {
             return birthDateCompare;
         }
 
-        return s1.getGender().compareTo(s2.getGender());
+        return student1.getGender().compareTo(student2.getGender());
     }
 }
