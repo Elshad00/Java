@@ -1,0 +1,62 @@
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Main {
+    public static void main(String[] args) {
+        Teacher teacher1 = new Teacher(1, "John", "Smith", "Male", "john.smith@uni.edu", 1975, 15, "Computer Science");
+        Teacher teacher2 = new Teacher(2, "Emily", "Johnson", "Female", "emily.j@uni.edu", 1980, 10, "Mathematics");
+
+        Course cs101 = new Course(101, "Introduction to Programming", "CS-101", 3, "Mon/Wed 10:00", teacher1);
+        Course math201 = new Course(201, "Calculus II", "MATH-201", 4, "Tue/Thu 13:00", teacher2);
+
+        teacher1.teach(cs101);
+        teacher2.teach(math201);
+
+        Student student1 = new Student(1001, "Alice", "Williams", "Female", "alice@student.edu", 2000);
+        Student student2 = new Student(1002, "Bob", "Brown", "Male", "bob@student.edu", 1999);
+
+        student1.addCourse(cs101);
+        student1.addCourse(math201);
+        student2.addCourse(cs101);
+
+        Exam exam1 = new Exam(1, cs101, student1, "2023-10-15", 85);
+        Exam exam2 = new Exam(2, math201, student1, "2023-11-20", 90);
+        Exam exam3 = new Exam(3, cs101, student2, "2023-10-15", 78);
+
+        List<Student> students = List.of(student1, student2);
+        List<Teacher> teachers = List.of(teacher1, teacher2);
+        List<Course> courses = List.of(cs101, math201);
+        List<Exam> exams = List.of(exam1, exam2, exam3);
+
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            mapper.findAndRegisterModules();
+            mapper.enable(SerializationFeature.INDENT_OUTPUT);
+            mapper.writeValue(new File("students.json"), students);
+            mapper.writeValue(new File("teachers.json"), teachers);
+            mapper.writeValue(new File("courses.json"), courses);
+            mapper.writeValue(new File("exams.json"), exams);
+
+            System.out.println("Data successfully saved to JSON files!");
+
+            System.out.println("\nSample Student Data:");
+            System.out.println(student1);
+
+            System.out.println("\nSample Teacher Data:");
+            System.out.println(teacher1);
+
+            System.out.println("\nSample Course Data:");
+            System.out.println(cs101);
+
+            System.out.println("\nSample Exam Data:");
+            System.out.println(exam1);
+
+        } catch (IOException e) {
+            System.err.println("Error saving to JSON: " + e.getMessage());
+        }
+    }
+}
